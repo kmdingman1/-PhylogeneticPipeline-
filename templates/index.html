@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TreeAlign - Phylogenetic Tree Builder</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
     <div class="container">
         <h1>TreeAlign</h1>
         <h2>Build interactive phylogenetic trees from FASTA files</h2>
-        <p>Upload FASTA to get started</p>
-        
+        <p id="subtitle">Upload FASTA to get started</p>
+
         <div class="content__item">
-            
-            <input type="file" id="fileInput" class="file-input" accept=".fasta,.fa,.fna,.ffn,.faa,.txt" style="display: none;">
+            <input type="file" id="fileInput" class="file-input"
+                   accept=".fasta,.fa,.fna,.ffn,.faa,.txt" style="display: none;">
             <button class="button button--pan" id="uploadButton">
-                <span>Upload File</span>
+                <span id="uploadButtonLabel">Upload FASTA File</span>
             </button>
         </div>
-    
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+
+        <div id="results" class="results" hidden>
+            <div class="results__meta">
+                <span id="resultsFilename"></span>
+                <span id="resultsCount"></span>
+            </div>
+            <pre id="asciiTree" class="ascii-tree"></pre>
         </div>
     </div>
 
-    
+    <script src="{{ url_for('static', filename='js/treeVisualization.js') }}"></script>
 </body>
 </html>

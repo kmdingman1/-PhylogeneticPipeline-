@@ -1,7 +1,10 @@
 import os
 import subprocess
 from Bio import SeqIO, AlignIO
-from parser import extract_species
+try:
+    from .parser import extract_species, read_fasta
+except ImportError:
+    from parser import extract_species, read_fasta
 
 # Uses MUSCLE to align sequences in a FASTA file and saves the output
 def align_file(input_path, output_dir="data/aligned_FASTA"):
@@ -14,8 +17,7 @@ def align_file(input_path, output_dir="data/aligned_FASTA"):
     output_path = os.path.join(output_dir, f"{name}_aligned.fasta")
     
     # Read input file
-    seqs = list(SeqIO.parse(input_path, "fasta"))
-    print(f"Aligning {len(seqs)} sequences...")
+    seqs = read_fasta(input_path)
     
     # Run MUSCLE
     muscle_cmd = "muscle" if os.name != 'nt' else "muscle.exe"
