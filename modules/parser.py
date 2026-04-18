@@ -1,7 +1,8 @@
-# FASTA parsing Functions
+# Parser module for reading FASTA files and extracting species names
 from Bio import SeqIO
 import os
 
+# Read FASTA file and returns a list of SeqRecord objects
 def read_fasta(file_path):
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File not found: {file_path}")
@@ -28,15 +29,21 @@ def extract_species(record):
         if len(parts) > 1:
             species_part = parts[1].split('GN=')[0].strip()
             return species_part
+        
+    # Case3: >NC_018753.1 Nomascus gabriellae format
+    parts = description.split()
+    if len(parts) >= 3:
+        species_part = f"{parts[1]} {parts[2]}"
+        return species_part
     
-    # Case3: Just use the ID
+    # Case4: Just use the ID
     return record.id
 
 # Prints a summary of the FASTA file
 def summarize_fasta(file_path):
     records = read_fasta(file_path)
     
-    print(f"FASTA Summary:")
+    print(f"\nFASTA Summary:")
     
     for i, record in enumerate(records):
         species = extract_species(record)
@@ -49,7 +56,7 @@ def summarize_fasta(file_path):
 
 # Test Module
 if __name__ == "__main__":
-    test_file = "data/input/HBB_protein.fasta"
+    test_file = "data/test_FASTA/mammalsHBBprotein.fasta"
     if os.path.exists(test_file):
         summarize_fasta(test_file)
     else:

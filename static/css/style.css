@@ -1,0 +1,110 @@
+body {
+    background-color: #1b1b1f;
+    color: rgba(255, 255, 245, 0.86);
+    text-align: center;
+    font-family: avenir, helvetica, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #ef7234 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 20px;
+    color: rgba(245, 245, 245, 0.56);
+    margin-bottom: 2rem;
+}
+
+.content__item {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.button {
+    pointer-events: auto;
+    cursor: pointer;
+    background: #ef7234;
+    border: none;
+    padding: 1rem 3rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.button::before,
+.button::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button--pan {
+    font-family: helvetica;
+    font-weight: 700;
+    border-radius: 3rem;
+    overflow: hidden;
+    color: #ffffff;
+    background: #ef7234;
+}
+
+.button--pan span {
+    position: relative;
+    mix-blend-mode: normal;
+}
+
+.button--pan::before {
+    content: "";
+    background: #ef7234;
+    transition: background 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.button--pan:hover::before {
+    background: #ff9852;
+}
+
+.button--pan:hover {
+    background: #ff9852;
+    transition: background 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+    transform: translateY(-2px);
+}
+
+.button--pan:active {
+    transform: translateY(0);
+}
+

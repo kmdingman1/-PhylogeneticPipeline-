@@ -1,3 +1,4 @@
+# Compares MUSCLE alignment with T-Coffee reference
 from Bio import AlignIO, SeqIO
 
 def compare_alignments(muscle_file, tcoffee_file, original_file):
@@ -17,6 +18,11 @@ def compare_alignments(muscle_file, tcoffee_file, original_file):
     print(f"T-Coffee length: {tcoffee.get_alignment_length()}")
     print(f"Sequences: {len(muscle)}")
     
+    # Check if alignments ahve the same length
+    if muscle.get_alignment_length() != tcoffee.get_alignment_length():
+        print("\n  WARNING: Alignments have different lengths!")
+        print(f"   This may affect the comparison accuracy")
+
     # Check IDs match
     muscle_ids = {r.id for r in muscle}
     tcoffee_ids = {r.id for r in tcoffee}
@@ -90,7 +96,7 @@ def compare_alignments(muscle_file, tcoffee_file, original_file):
 
 if __name__ == "__main__":
     compare_alignments(
-        muscle_file="data/output/CYCS_protein_aligned.fasta",
-        tcoffee_file="data/reference/CYCS_tcoffee_aligned.fasta",
-        original_file="data/input/HBB_protein.fasta"
+        muscle_file="data/aligned_FASTA/primatesCYTBmitochondrial_aligned.fasta",
+        tcoffee_file="data/reference/CYTBmitochondrial_tcoffee_aligned.fasta",
+        original_file="data/test_FASTA/primatesCYTBmitochondrial.fasta"
     )
