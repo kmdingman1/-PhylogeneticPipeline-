@@ -135,9 +135,10 @@ Open URL in your browser.
 
 The `data/test_FASTA/` folder includes a few example files you can try:
 
-- `mammalsHBBprotein.fasta` — mammalian hemoglobin beta-chain proteins
-- `vertebratesCYCSproteins.fasta` — vertebrate cytochrome-c proteins
-
+- `HBBprotein.fasta` — mammalian hemoglobin beta-chain proteins
+- `CYCSproteins.fasta` — vertebrate cytochrome-c proteins
+- `CYTBmitochondrial.fasta` — primate Cytochrome b mitochondrial gene
+- `COX1mitochondrial.fasta` — mammalian Cytochrome c oxidase mitochondrial gene
 ---
 
 ## Supported File Formats
