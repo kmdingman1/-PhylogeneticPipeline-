@@ -10,8 +10,30 @@
 <body>
     <div class="container">
         <h1>TreeAlign</h1>
-        <h2>Build interactive phylogenetic trees from FASTA files</h2>
-        <p id="subtitle">Upload FASTA to get started</p>
+        <h2>An integrated phylogenetic analysis pipeline in your browser</h2>
+        <p id="subtitle">
+            something informative here
+            
+        </p>
+
+        <div class="method-notes">
+            <div class="method-note">
+                <div class="method-note__label">Alignment</div>
+                <div class="method-note__body">
+                    Sequences are aligned with
+                    <strong>MUSCLE</strong>,
+                    a progressive multiple sequence alignment algorithm.
+                </div>
+            </div>
+            <div class="method-note">
+                <div class="method-note__label">Tree</div>
+                <div class="method-note__body">
+                    An unrooted <strong>Neighbor-Joining</strong> tree is built
+                    from a pairwise identity distance matrix computed over the
+                    alignment.
+                </div>
+            </div>
+        </div>
 
         <div class="content__item">
             <input type="file" id="fileInput" class="file-input"
@@ -21,6 +43,12 @@
             </button>
         </div>
 
+        <p class="upload-hint">
+            Accepts .fasta / .fa / .fna / .ffn / .faa / .txt
+            &nbsp;&bull;&nbsp; Minimum 3 sequences
+            &nbsp;&bull;&nbsp; Max 50 MB
+        </p>
+
         <div id="status" class="status" role="status" aria-live="polite"></div>
 
         <div id="results" class="results" hidden>
@@ -28,10 +56,17 @@
                 <span id="resultsFilename"></span>
                 <span id="resultsCount"></span>
             </div>
-            <pre id="asciiTree" class="ascii-tree"></pre>
+            <p class="tree-hint">
+                Scroll to zoom &nbsp;&bull;&nbsp; Drag to pan
+                &nbsp;&bull;&nbsp; Hover a leaf for species
+            </p>
+            <div class="tree-container">
+                <svg id="treeSvg"></svg>
+            </div>
         </div>
     </div>
 
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="{{ url_for('static', filename='js/treeVisualization.js') }}"></script>
 </body>
 </html>

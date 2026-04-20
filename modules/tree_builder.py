@@ -7,7 +7,7 @@ import os
 # Calculate distance matrix from alignment 
 def calculate_distance_matrix(alignment_file, model='identity'):
 
-    print(f"\n📊 Calculating distance matrix...")
+    print(f"\n Calculating distance matrix...")
     
     # Read the alignment
     alignment = AlignIO.read(alignment_file, "fasta")
@@ -28,10 +28,10 @@ def calculate_distance_matrix(alignment_file, model='identity'):
     
     return distance_matrix
 
-# Build Neighbor-Joining tree from distance matrix
+# Build Neighbor-Joining tree from distance matrix, save in Newick format
 def build_neighbor_joining_tree(alignment_file, output_dir="data/phylotree", model='identity'):
 
-    print(f"\n🌳 Building Neighbor-Joining tree...")
+    print(f"\n Building Neighbor-Joining tree...")
     
     # Read alignment
     alignment = AlignIO.read(alignment_file, "fasta")
@@ -73,7 +73,7 @@ def print_tree_summary(tree):
 # Simple test
 if __name__ == "__main__":
 
-    test_file = "data/aligned_FASTA/mammalsHBBprotein_aligned.fasta"
+    test_file = "data/aligned_FASTA/vertebratesCYCSprotein_aligned.fasta"
     
     if os.path.exists(test_file):
         print("="*50)

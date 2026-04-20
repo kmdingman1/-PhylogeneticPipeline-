@@ -1,3 +1,4 @@
+# Aligner module: Uses MUSCLE to align sequences in FASTA files
 import os
 import subprocess
 from Bio import SeqIO, AlignIO
@@ -53,7 +54,7 @@ def align_file(input_path, output_dir="data/aligned_FASTA"):
 # Test aligner
 if __name__ == "__main__":
     
-    test_file = "data/test_FASTA/primatesCYTBmitochondrial.fasta"
+    test_file = "data/test_FASTA/vertebratesCYCSproteins.fasta"
     if os.path.exists(test_file):
         align_file(test_file)
     else:

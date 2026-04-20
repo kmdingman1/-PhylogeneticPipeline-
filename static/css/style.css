@@ -11,7 +11,8 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    width: 90%;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -156,17 +157,139 @@ p {
     word-break: break-all;
 }
 
-.ascii-tree {
-    font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
-    font-size: 13px;
-    line-height: 1.35;
-    color: rgba(255, 255, 245, 0.9);
+.tree-container {
     background: #1b1b1f;
     border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 0;
-    overflow-x: auto;
-    white-space: pre;
-    max-height: 70vh;
+    padding: 0.5rem;
+    overflow: hidden;
+    min-height: 600px;
 }
 
+#treeSvg {
+    display: block;
+    width: 100%;
+    cursor: grab;
+    overflow: visible;
+}
+
+#treeSvg:active {
+    cursor: grabbing;
+}
+
+.tree-link {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.35);
+    stroke-width: 1.5;
+}
+
+.tree-node circle {
+    fill: #242429;
+    stroke: #ef7234;
+    stroke-width: 1.5;
+}
+
+.tree-node.leaf circle {
+    fill: #ef7234;
+    cursor: default;
+}
+
+.tree-node text {
+    font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 15px;
+    fill: rgba(255, 255, 245, 0.9);
+    pointer-events: none;
+}
+
+/* Leaves are hoverable — enable pointer events on their label */
+.tree-node.leaf {
+    cursor: help;
+}
+
+.tree-node.leaf text {
+    pointer-events: auto;
+}
+
+.tree-node.leaf.hovered text {
+    fill: #ef7234;
+    font-weight: 600;
+}
+
+.tree-node.leaf.hovered circle {
+    r: 5.5;
+}
+
+.tree-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.88);
+    color: #fff;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.35rem;
+    font-size: 15px;
+    font-family: inherit;
+    transition: opacity 0.15s;
+    z-index: 100;
+    max-width: 360px;
+    line-height: 1.4;
+}
+
+/* --- Landing page extras --- */
+
+#subtitle {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 640px;
+    margin: 0 auto 2rem;
+}
+
+.method-notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    text-align: left;
+}
+
+.method-note {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #ef7234;
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+}
+
+.method-note__label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ef7234;
+    margin-bottom: 0.35rem;
+}
+
+.method-note__body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(245, 245, 245, 0.8);
+}
+
+.method-note__body strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+p.upload-hint {
+    margin: 1rem auto 0;
+    font-size: 13px;
+    color: rgba(245, 245, 245, 0.45);
+    line-height: 1.5;
+}
+
+p.tree-hint {
+    margin: 0 0 0.85rem;
+    font-size: 13px;
+    color: rgba(245, 245, 245, 0.55);
+    text-align: center;
+    line-height: 1.5;
+}

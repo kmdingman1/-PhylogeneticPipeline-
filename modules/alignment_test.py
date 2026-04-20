@@ -96,7 +96,7 @@ def compare_alignments(muscle_file, tcoffee_file, original_file):
 
 if __name__ == "__main__":
     compare_alignments(
-        muscle_file="data/aligned_FASTA/primatesCYTBmitochondrial_aligned.fasta",
-        tcoffee_file="data/reference/CYTBmitochondrial_tcoffee_aligned.fasta",
-        original_file="data/test_FASTA/primatesCYTBmitochondrial.fasta"
+        muscle_file="data/aligned_FASTA/vertebratesCYCSprotein_aligned.fasta",
+        tcoffee_file="data/reference/CYCSprotein_tcoffee_aligned.fasta",
+        original_file="data/test_FASTA/vertebratesCYCSprotein.fasta"
     )
