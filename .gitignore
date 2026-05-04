@@ -1,2 +1,5 @@
 __pycache__/
 muscle.exe
+tests/
+conftest.py
+pytest.ini

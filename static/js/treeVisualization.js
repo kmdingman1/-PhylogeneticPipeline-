@@ -1,4 +1,6 @@
-// Upload FASTA, fetch /upload, render a rectangular cladogram with d3.
+// Upload FASTA, fetch /upload, render a rectangular phylogram with d3.
+// length from the root (genetic distance), with a small minimum-branch enforcement so short internal branches do not collapse
+// If the Newick string has no branch lengths, the renderer falls back to a cladogram (equal leaf depth from d3.cluster).
 // Leaves show FASTA IDs; hover reveals species. Click internal nodes to
 // Scroll to zoom, drag to pan.
 
@@ -122,6 +124,9 @@
         // Cladogram: equal branch lengths (all leaves at same depth)
         const cluster = d3.cluster().size([innerHeight, innerWidth]);
 
+        // Minimum visual branch length, in pixels, so internal branches stay visible and labellable.
+        const MIN_BRANCH_PX = 22;
+
         // Zoom/pan layer
         const zoomLayer = svg.append('g').attr('class', 'zoom-layer');
         const g = zoomLayer.append('g')
@@ -140,10 +145,37 @@
 
         function update() {
             cluster(root);
+
+            // Walk the tree in pre-order and assign each node its cumulative branch length from the root.
+            root.eachBefore(d => {
+                d.distFromRoot = d.parent
+                    ? d.parent.distFromRoot + (d.data.length || 0)
+                    : 0;
+            });
+
+            // If the Newick string carried any branch lengths, switch the layout from cladogram to phylogram. 
+            // Each node's y (horizontal position) becomes proportional to its distance from the root, 
+            const maxDist = d3.max(root.descendants(), d => d.distFromRoot) || 0;
+            if (maxDist > 0) {
+                const xScale = d3.scaleLinear()
+                    .domain([0, maxDist])
+                    .range([0, innerWidth]);
+                root.eachBefore(d => {
+                    if (!d.parent) {
+                        d.y = 0;
+                    } else {
+                        const proportional = xScale(d.distFromRoot);
+                        const minimum = d.parent.y + MIN_BRANCH_PX;
+                        d.y = Math.max(proportional, minimum);
+                    }
+                });
+            }
+
             const descendants = root.descendants();
             const links = root.links();
 
-            // Right-angle "elbow" paths for a rectangular cladogram.
+            // Right-angle "elbow" paths
+            // length is proportional to the child's branch length.
             const linkSel = linkGroup.selectAll('path').data(links, d => keyOf(d.target));
             linkSel.exit().remove();
             linkSel.enter().append('path')
@@ -191,7 +223,6 @@
                 });
         }
     }
-
 
     function keyOf(node) {
         if (!node.__key) node.__key = ++keyOf.counter;
