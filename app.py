@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
 import os
 import tempfile
 from werkzeug.utils import secure_filename
@@ -12,7 +11,6 @@ from modules import (
 )
 
 app = Flask(__name__)
-CORS(app)
 
 # Max upload size
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024

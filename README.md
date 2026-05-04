@@ -75,7 +75,7 @@ TreeAlign requires **Python 3.9 or higher**.
 pip install -r requirements.txt
 ```
 
-Installs Flask, Flask-CORS, and Biopython.
+Installs Flask, and Biopython.
 
 ### 3. Install MUSCLE
 
