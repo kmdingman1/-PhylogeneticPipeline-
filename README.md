@@ -37,7 +37,7 @@ No command line, no intermediate files to manage, no desktop viewer — just upl
 ## Screenshots
 
 *<img width="1047" height="551" alt="image" src="https://github.com/user-attachments/assets/5e49765e-1811-42ff-a7fd-3b797b9d79c0" />*
-*<img width="1158" height="775" alt="image" src="https://github.com/user-attachments/assets/5d8ca6a3-0c5d-442b-8277-d0261e2eef33" />*
+*<img width="1417" height="770" alt="image" src="https://github.com/user-attachments/assets/60164137-cc23-49ea-a7be-8d6beeea5264" />*
 
 
 
@@ -219,7 +219,6 @@ Check the Flask terminal output. The full Python traceback is printed there, whi
 
 **Python packages** (see `requirements.txt`):
 - [Flask](https://flask.palletsprojects.com/) 2.3.3 — web framework
-- [Flask-CORS](https://flask-cors.readthedocs.io/) 4.0.0 — CORS support
 - [Biopython](https://biopython.org/) 1.83 — sequence I/O, distance calculation, tree construction
 
 **External tools**:
