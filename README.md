@@ -88,7 +88,7 @@ TreeAlign uses **MUSCLE v5** for multiple sequence alignment.
 
 **macOS**
 ```bash
-brew install muscle
+brew install brewsci/bio/muscle
 ```
 
 **Linux**
